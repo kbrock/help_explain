@@ -7,14 +7,14 @@ describe "queries/index" do
         :name => "Name",
         :comment => "Comment",
         :sql => "Sql",
-        :plan => "Plan",
+        :plan => select_plan_txt,
         :created_at => Time.now
       ),
       stub_model(Query,
         :name => "Name",
         :comment => "Comment",
         :sql => "Sql",
-        :plan => "Plan",
+        :plan => select_plan_txt,
         :created_at => Time.now
       )
     ])

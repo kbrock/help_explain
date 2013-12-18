@@ -49,6 +49,7 @@ describe PlanNode do
     it "should have children" do
       expect(subject.children.size).to eq(1)
       expect(subject.children.first.name).to eq("Sort")
+      expect(subject).to be_children
     end
   end
 end

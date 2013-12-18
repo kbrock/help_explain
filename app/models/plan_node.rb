@@ -13,6 +13,7 @@ class PlanNode
 
   def name ; self["Node Type"] ; end
   def children ; @children ||= self["Plans"].try(:collect){|plan| PlanNode.new(plan) } || [] ; end
+  def children? ; children.present? ; end
   # @return [Float] amount of time to startup filter - fixed cost
   def plan_startup_cost ; self["Startup Cost"] ; end
   def plan_total_cost ; self["Total Cost"] ; end
