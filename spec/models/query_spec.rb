@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe Query do
+
   context "#clean_sql" do
     it "should leave object without explain alone" do
       expect(clean_sql('select a from table x')).to eq('select a from table x')
@@ -37,12 +38,18 @@ describe Query do
     end
   end
 
+  context "parsable_json" do
+    it "should say valid object if valid json" do
+      expect(Query.new(name: "name", sql: "select 1", plan: select_plan_txt)).to be_valid
+    end
+  end
+
   protected
   def clean_sql(str)
-    Query.new(sql: str).tap{|q| q.send(:clean_sql) }.sql
+    Query.new(sql: str).tap{|q| q.valid? }.sql
   end
 
   def clean_plan(str)
-    Query.new(plan: str).tap{|q| q.send(:clean_plan) }.plan
+    Query.new(plan: str).tap{|q| q.valid? }.plan
   end
 end

@@ -23,7 +23,7 @@ describe QueriesController do
   # This should return the minimal set of attributes required to create a valid
   # Query. As you add validations to Query, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { { "name" => "MyString", "sql" => 'select 1', "plan" => "Result  (cost=0.00..0.01 rows=1 width=0)" } }
+  let(:valid_attributes) { { "name" => "MyString", "sql" => 'select 1', "plan" => select_plan_txt } }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in

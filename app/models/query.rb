@@ -4,11 +4,33 @@ class Query < ActiveRecord::Base
 
   validates_presence_of %w(name sql plan)
 
+  validate :parsable_json
+
   def plan_summary
     "good stuff"
   end
 
+  def plan_node
+    @plan_node ||= PlanNode.new(plan_json["Plan"] || "{}")
+  end
+
+  def total_time
+    plan_json["Total Runtime"]
+  end
+
+  def plan_json
+    @plan_json ||= JSON.parse(plan)[0] || {}
+  end
+
   private
+
+  def parsable_json
+    begin
+      JSON.parse(plan) || true
+    rescue
+      errors.add(:plan, "invalid json")
+    end
+  end
 
   # remove extra whitespace and explain statement
   def clean_sql

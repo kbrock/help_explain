@@ -1,0 +1,137 @@
+[
+{
+  "Plan": {
+    "Node Type": "Limit",
+    "Startup Cost": 23.04,
+    "Total Cost": 23.05,
+    "Plan Rows": 2,
+    "Plan Width": 2082,
+    "Actual Startup Time": 0.116,
+    "Actual Total Time": 0.118,
+    "Actual Rows": 7,
+    "Actual Loops": 1,
+    "Output": ["public.miq_queue.id", "public.miq_queue.target_id", "public.miq_queue.priority", "public.miq_queue.method_name", "public.miq_queue.state", "public.miq_queue.created_on", "public.miq_queue.updated_on", "public.miq_queue.lock_version", "public.miq_queue.task_id", "public.miq_queue.md5", "public.miq_queue.deliver_on", "public.miq_queue.queue_name", "public.miq_queue.class_name", "public.miq_queue.instance_id", "public.miq_queue.args", "public.miq_queue.miq_callback", "public.miq_queue.msg_data", "public.miq_queue.zone", "public.miq_queue.role", "public.miq_queue.server_guid", "public.miq_queue.msg_timeout", "public.miq_queue.handler_id", "public.miq_queue.handler_type", "public.miq_queue.for_user", "public.miq_queue.for_user_id", "public.miq_queue.expires_on"],
+    "Plans": [
+      {
+        "Node Type": "Sort",
+        "Parent Relationship": "Outer",
+        "Startup Cost": 23.04,
+        "Total Cost": 23.05,
+        "Plan Rows": 2,
+        "Plan Width": 2082,
+        "Actual Startup Time": 0.115,
+        "Actual Total Time": 0.116,
+        "Actual Rows": 7,
+        "Actual Loops": 1,
+        "Output": ["public.miq_queue.id", "public.miq_queue.target_id", "public.miq_queue.priority", "public.miq_queue.method_name", "public.miq_queue.state", "public.miq_queue.created_on", "public.miq_queue.updated_on", "public.miq_queue.lock_version", "public.miq_queue.task_id", "public.miq_queue.md5", "public.miq_queue.deliver_on", "public.miq_queue.queue_name", "public.miq_queue.class_name", "public.miq_queue.instance_id", "public.miq_queue.args", "public.miq_queue.miq_callback", "public.miq_queue.msg_data", "public.miq_queue.zone", "public.miq_queue.role", "public.miq_queue.server_guid", "public.miq_queue.msg_timeout", "public.miq_queue.handler_id", "public.miq_queue.handler_type", "public.miq_queue.for_user", "public.miq_queue.for_user_id", "public.miq_queue.expires_on"],
+        "Sort Key": ["public.miq_queue.priority", "public.miq_queue.id"],
+        "Sort Method": "quicksort",
+        "Sort Space Used": 28,
+        "Sort Space Type": "Memory",
+        "Plans": [
+          {
+            "Node Type": "Bitmap Heap Scan",
+            "Parent Relationship": "Outer",
+            "Relation Name": "miq_queue",
+            "Schema": "public",
+            "Alias": "miq_queue",
+            "Startup Cost": 16.83,
+            "Total Cost": 23.03,
+            "Plan Rows": 2,
+            "Plan Width": 2082,
+            "Actual Startup Time": 0.069,
+            "Actual Total Time": 0.092,
+            "Actual Rows": 7,
+            "Actual Loops": 1,
+            "Output": ["public.miq_queue.id", "public.miq_queue.target_id", "public.miq_queue.priority", "public.miq_queue.method_name", "public.miq_queue.state", "public.miq_queue.created_on", "public.miq_queue.updated_on", "public.miq_queue.lock_version", "public.miq_queue.task_id", "public.miq_queue.md5", "public.miq_queue.deliver_on", "public.miq_queue.queue_name", "public.miq_queue.class_name", "public.miq_queue.instance_id", "public.miq_queue.args", "public.miq_queue.miq_callback", "public.miq_queue.msg_data", "public.miq_queue.zone", "public.miq_queue.role", "public.miq_queue.server_guid", "public.miq_queue.msg_timeout", "public.miq_queue.handler_id", "public.miq_queue.handler_type", "public.miq_queue.for_user", "public.miq_queue.for_user_id", "public.miq_queue.expires_on"],
+            "Recheck Cond": "((((public.miq_queue.queue_name)::text = 'generic'::text) AND (public.miq_queue.role IS NULL) AND (public.miq_queue.priority <= 200) AND ((public.miq_queue.state)::text = 'ready'::text)) OR (((public.miq_queue.queue_name)::text = 'generic'::text) AND ((public.miq_queue.role)::text = 'database_owner'::text) AND (public.miq_queue.priority <= 200) AND ((public.miq_queue.state)::text = 'ready'::text)))",
+            "Rows Removed by Index Recheck": 0,
+            "Filter": "(((public.miq_queue.zone IS NULL) OR ((public.miq_queue.zone)::text = 'default'::text)) AND ((public.miq_queue.task_id IS NULL) OR (NOT (hashed SubPlan 1))) AND ((public.miq_queue.server_guid IS NULL) OR ((public.miq_queue.server_guid)::text = '3df78918-648f-11e3-a87f-b8e856479e14'::text)) AND ((public.miq_queue.deliver_on IS NULL) OR (public.miq_queue.deliver_on <= '2013-12-17 18:34:44.223152'::timestamp without time zone)))",
+            "Rows Removed by Filter": 2,
+            "Plans": [
+              {
+                "Node Type": "BitmapOr",
+                "Parent Relationship": "Outer",
+                "Startup Cost": 8.54,
+                "Total Cost": 8.54,
+                "Plan Rows": 2,
+                "Plan Width": 0,
+                "Actual Startup Time": 0.049,
+                "Actual Total Time": 0.049,
+                "Actual Rows": 0,
+                "Actual Loops": 1,
+                "Plans": [
+                  {
+                    "Node Type": "Bitmap Index Scan",
+                    "Parent Relationship": "Member",
+                    "Index Name": "miq_queue_get_idx_qrzspdt",
+                    "Startup Cost": 0.00,
+                    "Total Cost": 4.28,
+                    "Plan Rows": 2,
+                    "Plan Width": 0,
+                    "Actual Startup Time": 0.036,
+                    "Actual Total Time": 0.036,
+                    "Actual Rows": 9,
+                    "Actual Loops": 1,
+                    "Index Cond": "(((public.miq_queue.queue_name)::text = 'generic'::text) AND (public.miq_queue.role IS NULL) AND (public.miq_queue.priority <= 200))"
+                  }, {
+                    "Node Type": "Bitmap Index Scan",
+                    "Parent Relationship": "Member",
+                    "Index Name": "miq_queue_get_idx_qrzspdt",
+                    "Startup Cost": 0.00,
+                    "Total Cost": 4.26,
+                    "Plan Rows": 1,
+                    "Plan Width": 0,
+                    "Actual Startup Time": 0.013,
+                    "Actual Total Time": 0.013,
+                    "Actual Rows": 0,
+                    "Actual Loops": 1,
+                    "Index Cond": "(((public.miq_queue.queue_name)::text = 'generic'::text) AND ((public.miq_queue.role)::text = 'database_owner'::text) AND (public.miq_queue.priority <= 200))"
+                  }
+                ]
+              }, {
+                "Node Type": "Aggregate",
+                "Strategy": "Hashed",
+                "Parent Relationship": "SubPlan",
+                "Subplan Name": "SubPlan 1",
+                "Startup Cost": 8.28,
+                "Total Cost": 8.29,
+                "Plan Rows": 1,
+                "Plan Width": 15,
+                "Actual Startup Time": 0.000,
+                "Actual Total Time": 0.000,
+                "Output": ["public.miq_queue.task_id"],
+                "Plans": [
+                  {
+                    "Node Type": "Index Only Scan",
+                    "Parent Relationship": "Outer",
+                    "Scan Direction": "Forward",
+                    "Index Name": "miq_queue_idx",
+                    "Relation Name": "miq_queue",
+                    "Schema": "public",
+                    "Alias": "miq_queue",
+                    "Startup Cost": 0.00,
+                    "Total Cost": 8.27,
+                    "Plan Rows": 1,
+                    "Plan Width": 15,
+                    "Actual Startup Time": 0.000,
+                    "Actual Total Time": 0.000,
+                    "Output": ["public.miq_queue.task_id"],
+                    "Index Cond": "((public.miq_queue.state = 'dequeue'::text) AND (public.miq_queue.task_id IS NOT NULL))",
+                    "Rows Removed by Index Recheck": 0,
+                    "Filter": "((public.miq_queue.zone IS NULL) OR ((public.miq_queue.zone)::text = 'default'::text))",
+                    "Rows Removed by Filter": 0,
+                    "Heap Fetches": 0
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "Triggers": [
+  ],
+  "Total Runtime": 0.220
+}]
