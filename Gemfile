@@ -37,6 +37,8 @@ gem 'anbt-sql-formatter', require: "anbt-sql-formatter/formatter"
 
 group :development, :test do
   gem 'rspec-rails'
+  gem 'pry-plus'
+  gem 'better_error_message'
 end
 
 # Use ActiveModel has_secure_password
