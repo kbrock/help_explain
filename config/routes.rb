@@ -1,6 +1,7 @@
 HelpExplain::Application.routes.draw do
   resources :queries
 
+  root to: redirect('/queries')
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -5,28 +5,20 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%= model_class.human_attribute_name(:comment) %></th>
-      <th><%= model_class.human_attribute_name(:sql) %></th>
-      <th><%= model_class.human_attribute_name(:plan) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+      <th><%= model_class.human_attribute_name(:plan_summary) %></th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
     <% @queries.each do |query| %>
       <tr>
-        <td><%= link_to query.id, query_path(query) %></td>
-        <td><%= query.name %></td>
-        <td><%= query.comment %></td>
-        <td><%= query.sql %></td>
-        <td><%= query.plan %></td>
-        <td><%=l query.created_at %></td>
+        <td><%= link_to query.name, query_path(query) %></td>
+        <td><%= link_to query.plan_summary, query_path(query) %></td>
         <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+          <%= link_to icon_and_text('edit'),
                       edit_query_path(query), :class => 'btn btn-mini' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+          <%= link_to icon_and_text('destroy','trash'),
                       query_path(query),
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
@@ -37,6 +29,6 @@
   </tbody>
 </table>
 
-<%= link_to t('.new', :default => t("helpers.links.new")),
+<%= link_to icon_and_text('new','plus'),
             new_query_path,
             :class => 'btn btn-primary' %>
