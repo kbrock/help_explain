@@ -3,13 +3,45 @@
 </div>
 
 <p>
-  <%= link_to icon_and_text('back', 'arrow-left'),
-              queries_path, :class => 'btn'  %>
+  <%= link_to icon_and_text(nil, 'arrow-left'),
+              queries_path, :class => 'btn', :title => 'Back'  %>
   <%= @query.name %>
-  <%= link_to icon_and_text('edit'),
-              edit_query_path(@query), :class => 'btn' %>
+  <%= link_to icon_and_text(nil, 'edit'),
+              edit_query_path(@query), :class => 'btn', :title => 'Edit' %>
 </p>
 <p><%= @query.comment%></p>
 
 <%#= @query.sql %>
 <%= render @query.query_plan %>
+  <script>
+    var table = $(".treeable");
+    table.treetable({
+      expandable: true,
+      onNodeCollapse: function() {
+        var node = this;
+        //table.treetable("unloadBranch", node);
+      },
+      initialState: "expanded",
+      onNodeExpand: function() {
+        var node = this;
+
+        // Render loader/spinner while loading
+        /*
+        $.ajax({
+          async: false, // Must be false, otherwise loadBranch happens after showChildren?
+          url: "/nodes/" + node.id + "/children"
+        }).done(function(html) {
+          var rows = $(html).filter("tr");
+
+          table.treetable("loadBranch", node, rows);
+        });
+*/
+      }
+    });
+
+    // Highlight selected row
+    $(".treeable tbody tr").on("mousedown", function() {
+      $("tr.selected").removeClass("selected");
+      $(this).addClass("selected");
+    });
+  </script>

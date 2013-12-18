@@ -1,10 +1,16 @@
 class PlanNode
+  cattr_accessor :global_id
+  @next_id=1
   include ActiveModel::Conversion
 
+  attr_accessor :id
+  attr_accessor :parent_id
   attr_accessor :attr
 
-  def initialize(hash)
+  def initialize(hash, parent_id=nil)
     @attr = hash
+    @parent_id = parent_id
+    @id = self.class.next_id
   end
 
   def [](name)
@@ -12,8 +18,21 @@ class PlanNode
   end
 
   def name ; self["Node Type"] ; end
-  def children ; @children ||= self["Plans"].try(:collect){|plan| PlanNode.new(plan) } || [] ; end
-  def children? ; children.present? ; end
+  def children
+    @children ||= self["Plans"].try(:collect) { |plan|
+      PlanNode.new(plan, id)
+    } || []
+  end
+
+  def children?
+    children.present?
+  end
+
+  #ui - belongs in presenter
+  def kind
+    children? ? 'folder' : 'file'
+  end
+
   # @return [Float] amount of time to startup filter - fixed cost
   def plan_startup_cost ; self["Startup Cost"] ; end
   def plan_total_cost ; self["Total Cost"] ; end
@@ -26,7 +45,15 @@ class PlanNode
   def actual_rows ; self["Actual Rows"] ; end
   def actual_loops ; self["Actual Loops"] ; end
 
+  def diff_rows
+    actual_rows / plan_rows
+  end
+
   # @return Array<String> array of table.columns returned from this filter
   # available for verbose plans
   def output ; self["Output"] ; end
+
+  def self.next_id
+    @next_id = (@next_id + 1) % 1000
+  end
 end

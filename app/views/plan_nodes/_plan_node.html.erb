@@ -1,4 +1,5 @@
-<tr>
-  <td><%= plan_node.name%></td>
+<tr data-tt-id="<%= plan_node.id %>" data-tt-parent-id="<%= plan_node.parent_id %>" data-tt-branch="<%= plan_node.children? %>">
+  <td><span class="<%=plan_node.kind%>"><%= plan_node.name%></span></td>
+  <td><%= plan_node.plan_total_cost %> (<%= plan_node.actual_total_time %>)</td>
 </tr>
-<%= render plan_node.children if plan_node.children? %>
+<%= render plan_node.children %>

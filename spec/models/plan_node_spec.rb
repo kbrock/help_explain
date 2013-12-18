@@ -6,6 +6,14 @@ describe PlanNode do
     PlanNode.new(complex_plan[0]["Plan"])
   }
 
+  context "#id" do
+    it "should auto increment the id" do
+      assert_not_nil id1 = PlanNode.new(complex_plan).id
+      assert_not_nil id2 = PlanNode.new(complex_plan).id
+      expect(id1).not_to eq(id2)
+    end
+  end
+
   context "#params" do
     it "should return name" do
       expect(subject.name).to eq("Limit")
