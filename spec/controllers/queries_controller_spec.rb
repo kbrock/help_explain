@@ -23,7 +23,7 @@ describe QueriesController do
   # This should return the minimal set of attributes required to create a valid
   # Query. As you add validations to Query, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { { "name" => "MyString" } }
+  let(:valid_attributes) { { "name" => "MyString", "sql" => 'select 1', "plan" => "Result  (cost=0.00..0.01 rows=1 width=0)" } }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -84,14 +84,14 @@ describe QueriesController do
     describe "with invalid params" do
       it "assigns a newly created but unsaved query as @query" do
         # Trigger the behavior that occurs when invalid params are submitted
-        Query.any_instance.stub(:save).and_return(false)
+        allow_any_instance_of(Query).to receive(:save).and_return(false)
         post :create, {:query => { "name" => "invalid value" }}, valid_session
         expect(assigns(:query)).to be_a_new(Query)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
-        Query.any_instance.stub(:save).and_return(false)
+        allow_any_instance_of(Query).to receive(:save).and_return(false)
         post :create, {:query => { "name" => "invalid value" }}, valid_session
         expect(response).to render_template("new")
       end
@@ -127,7 +127,7 @@ describe QueriesController do
       it "assigns the query as @query" do
         query = Query.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
-        Query.any_instance.stub(:save).and_return(false)
+        allow_any_instance_of(Query).to receive(:save).and_return(false)
         put :update, {:id => query.to_param, :query => { "name" => "invalid value" }}, valid_session
         expect(assigns(:query)).to eq(query)
       end
@@ -135,7 +135,7 @@ describe QueriesController do
       it "re-renders the 'edit' template" do
         query = Query.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
-        Query.any_instance.stub(:save).and_return(false)
+        allow_any_instance_of(Query).to receive(:save).and_return(false)
         put :update, {:id => query.to_param, :query => { "name" => "invalid value" }}, valid_session
         expect(response).to render_template("edit")
       end

@@ -2,6 +2,8 @@ class Query < ActiveRecord::Base
   before_validation :clean_sql
   before_validation :clean_plan
 
+  validates_presence_of %w(name sql plan)
+
   def plan_summary
     "good stuff"
   end

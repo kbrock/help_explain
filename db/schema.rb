@@ -17,10 +17,10 @@ ActiveRecord::Schema.define(version: 20131217230011) do
   enable_extension "plpgsql"
 
   create_table "queries", force: true do |t|
-    t.string   "name"
-    t.string   "comment"
-    t.string   "sql"
-    t.string   "plan"
+    t.string   "name",       null: false
+    t.text     "comment"
+    t.text     "sql",        null: false
+    t.text     "plan",       null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
