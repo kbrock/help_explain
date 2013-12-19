@@ -1,13 +1,8 @@
 <div class="page-header">
-  <h1><a href="<%=queries_path%>" title="Back"><i class="icon-arrow-left"><%= t '.title', :default => "queries" %></i></a></h1>
+  <ol class="breadcrumb">
+    <li><a href="<%=queries_path%>" title="Back"><i class="icon-arrow-left"> queries</i></a></li>
+    <li class="active"><%=t '.title', :default => [:'helpers.titles.show', 'Show %{model}'], :model => "query" %></li>
+  </ol>
 </div>
 
-<p>
-  <%= @query.name %>
-  <%= link_to icon_and_text(nil, 'edit'),
-              edit_query_path(@query), :class => 'btn btn-mini', :title => 'Edit' %>
-  <%= link_to icon_and_text(nil,'leaf'),
-              clone_query_path(id: @query.id), :class => 'btn btn-mini', :title => 'Clone' %>
-</p>
-<p><%= @query.comment%></p>
-<%= render @query.query_plan %>
+<%= render @query %>

@@ -29,8 +29,6 @@
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 queries_path, :class => 'btn', :title => 'Cancel' %>
     <%- unless @query.new_record? %>
-      <%= link_to t('.show', :default => t("helpers.links.show")),
-                query_path(@query), :class => 'btn', :title => 'Show' %>
       <%= link_to icon_and_text('clone','leaf'),
                 clone_query_path(id: @query.id), :class => 'btn', :title => 'Clone' %>
       <%= link_to icon_and_text('destroy','fire'),

@@ -1,5 +1,9 @@
 HelpExplain::Application.routes.draw do
   resources :queries do
+    collection do
+      get 'compare'
+      post 'compare'
+    end
     member do
       get 'clone'
     end

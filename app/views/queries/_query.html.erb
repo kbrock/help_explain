@@ -1,0 +1,19 @@
+<!-- Nav tabs -->
+<ul class="nav nav-pills">
+  <li class='active'><a href="#plan-<%= query.id%>" data-toggle="tab"><%=icon('list-alt','Plan')%></a></li>
+  <li><a href="#sql-<%= query.id%>" data-toggle="tab"><%=icon('align-left','Sql')%></a></li>
+  <li><%= link_to icon('edit', query.name),
+              edit_query_path(query), :class => 'btn-mini', :title => 'Edit' %></li>
+  <li><%= link_to icon('leaf', 'Clone'),
+              clone_query_path(id: query.id), :class => 'btn-mini', :title => 'Clone' %></li>
+</ul>
+<% if query.comment %>
+<p><%= query.comment%></p>
+<!-- Tab panes -->
+<% end %>
+<div class="tab-content">
+  <div class="tab-pane active" id="plan-<%= query.id%>">
+<%= render query.query_plan %>
+  </div>
+  <div class="tab-pane" id="sql-<%= query.id%>"><pre><code><%= query.sql %></code></pre></div>
+</div>

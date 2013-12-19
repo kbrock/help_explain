@@ -26,6 +26,10 @@ class QueriesController < ApplicationController
     @query = @query.clone
   end
 
+  def compare
+    @queries = Query.where(id: params[:id]).to_a
+  end
+
   # POST /queries
   # POST /queries.json
   def create

@@ -6,6 +6,10 @@ module ApplicationHelper
     "<i class='icon-#{icon_name}'> #{text}</i>".html_safe
   end
 
+  def icon(icon_name, text=nil)
+    "<i class='icon-#{icon_name}'> #{text}</i>".html_safe
+  end
+
   def format_sql(sql)
     sql_formatter.format(sql)
   end

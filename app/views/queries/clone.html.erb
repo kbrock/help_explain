@@ -1,5 +1,8 @@
-<%- model_class = Query -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => [:'helpers.titles.edit', 'Copy %{model}'], :model => model_class.model_name.human.titleize %></h1>
+  <ol class="breadcrumb">
+    <li><a href="<%=queries_path%>" title="Back"><i class="icon-arrow-left"> queries</i></a></li>
+    <li><a href="<%=query_path(params[:id])%>" title="Back"> <%=t('.show', :default => t("helpers.links.show"))%></a></li>
+    <li class="active"><%=t '.title', :default => [:'helpers.titles.clone', 'Copy %{model}'], :model => "query" %></li>
+  </ol>
 </div>
 <%= render :partial => 'form' %>
