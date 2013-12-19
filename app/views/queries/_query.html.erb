@@ -7,10 +7,7 @@
   <li><%= link_to icon('leaf', 'Clone'),
               clone_query_path(id: query.id), :class => 'btn-mini', :title => 'Clone' %></li>
 </ul>
-<% if query.comment %>
-<p><%= query.comment%></p>
 <!-- Tab panes -->
-<% end %>
 <div class="tab-content">
   <div class="tab-pane active" id="plan-<%= query.id%>">
 <%= render query.query_plan %>

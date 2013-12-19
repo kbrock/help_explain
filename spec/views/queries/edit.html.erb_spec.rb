@@ -18,7 +18,6 @@ describe "queries/edit" do
       assert_select "input#query_name[name=?]", "query[name]"
       assert_select "textarea#query_sql[name=?]", "query[sql]"
       assert_select "textarea#query_plan[name=?]", "query[plan]"
-      assert_select "textarea#query_comment[name=?]", "query[comment]"
     end
   end
 end
