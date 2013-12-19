@@ -21,4 +21,13 @@ module ApplicationHelper
       formatter = AnbtSql::Formatter.new(rule)
     end
   end
+
+  #optional_metric(plan_node, "filter", :filter_removed, :index_filter)
+  def optional_metric(plan_node, text, metric, metric_present=nil)
+    metric_present ||= metric
+    if plan_node.send(metric_present)
+      metric_value = plan_node.send(metric).to_i
+      %{<span title="#{pluralize(metric_value,"rows")} removed by #{text}">-#{metric_value}</span>}.html_safe
+    end
+  end
 end

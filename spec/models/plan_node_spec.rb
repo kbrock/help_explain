@@ -19,8 +19,8 @@ describe PlanNode do
       expect(subject.name).to eq("Limit")
     end
 
-    it "should return plan_startup_cost" do
-      expect(subject.plan_startup_cost).to eq(23.04)
+    it "should return plan_child_cost" do
+      expect(subject.plan_child_cost).to eq(23.04)
     end
 
     it "should return plan_total_cost" do
@@ -35,9 +35,8 @@ describe PlanNode do
       expect(subject.plan_width).to eq(2082)
     end
 
-
-    it "should return actual_startup_time" do
-      expect(subject.actual_startup_time).to eq(0.116)
+    it "should return actual_child_time" do
+      expect(subject.actual_child_time).to eq(0.116)
     end
 
     it "should return actual_total_time" do
@@ -56,7 +55,8 @@ describe PlanNode do
   context "#children" do
     it "should have children" do
       expect(subject.children.size).to eq(1)
-      expect(subject.children.first.name).to eq("Sort")
+      expect(subject.children.first.type).to eq("Sort")
+      expect(subject.children.first.name).to eq("Quicksort Memory 28k") #"Sort"
       expect(subject).to be_children
     end
   end

@@ -1,5 +1,27 @@
 <tr data-tt-id="<%= plan_node.id %>" data-tt-parent-id="<%= plan_node.parent_id %>" data-tt-branch="<%= plan_node.children? %>">
-  <td><span class="<%=plan_node.kind%>"><%= plan_node.name%></span></td>
-  <td><%= plan_node.plan_total_cost %> (<%= plan_node.actual_total_time %>)</td>
+  <td>
+    <%- if plan_node.index_cond? -%>
+      <span class="<%=plan_node.kind%> <%=plan_node.flag%>" title="<%= plan_node.index_cond %>"><%= plan_node.name%></span>
+    <%- elsif plan_node.sort_keys? -%>
+      <span class="<%=plan_node.kind%> <%=plan_node.flag%>" title="<%= plan_node.sort_keys.join(", ") %>"><%= plan_node.name%></span>
+    <%- else -%>
+      <span class="<%=plan_node.kind%> <%=plan_node.flag%>"><%= plan_node.name%></span>
+    <%- end -%>
+    <% if plan_node.filter? %>
+    <span title="<%= plan_node.filter %>">filter</filter>
+    <% end %>
+    <% if plan_node.recheck_cond? %>
+    <span title="<%= plan_node.recheck_cond %>">recheck</span>
+    <% end %>
+  </td>
+  <td><span title="cumulative: <%=plan_node.actual_total_time%>"><%= number_with_precision(plan_node.actual_time)%></span></td>
+  <td><span title="cumulative: <%=number_with_precision(plan_node.plan_total_cost)%>"><%= number_with_precision(plan_node.plan_cost) %></span></td>
+  <!-- move 3x below -->
+  <td><span title="cumulative: <%=plan_node.plan_rows.to_i%> planned, <%= plan_node.actual_rows.to_i%> scanned"><%= plan_node.diff_rows || "x" %></span></td>
+  <td>
+<span title="planned: <%= plan_node.plan_rows.to_i%>, actual: <%=plan_node.actual_rows.to_i%>"><%= plan_node.actual_rows ||0%></span><%= optional_metric(plan_node, "filter", :filter_removed) %><%= optional_metric(plan_node, "recheck", :recheck_removed) %></td>
+  <td><%= plan_node.plan_width %></td>
+  <td><%= plan_node.actual_loops %></td>
+  <td><%= (plan_node.attr.keys - PlanNode.known_attributes).map{|k| "#{k}=#{plan_node[k]}"}.join("<BR>").html_safe %></td>
 </tr>
 <%= render plan_node.children %>

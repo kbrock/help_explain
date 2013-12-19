@@ -5,4 +5,10 @@ class SqlText
        .gsub(/^$\n/,'')
        .gsub(/\Aexplain.*(select|update|insert|delete)/i) {$1}
   end
+
+  def self.simplify_filter(str)
+    str.gsub(/public\.\w*\./,'')
+       .gsub(/::\w*/,'')
+       .gsub(/\((\w*)\)/) { $1 }
+  end
 end
