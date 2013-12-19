@@ -1,5 +1,5 @@
 class QueriesController < ApplicationController
-  before_action :set_query, only: [:show, :edit, :update, :destroy]
+  before_action :set_query, only: [:show, :edit, :update, :destroy, :clone]
 
   # GET /queries
   # GET /queries.json
@@ -19,6 +19,11 @@ class QueriesController < ApplicationController
 
   # GET /queries/1/edit
   def edit
+  end
+
+  # GET /query/1/clone
+  def clone
+    @query = @query.clone
   end
 
   # POST /queries

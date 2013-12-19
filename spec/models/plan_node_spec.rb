@@ -16,7 +16,7 @@ describe PlanNode do
 
   context "#params" do
     it "should return name" do
-      expect(subject.name).to eq("Limit")
+      expect(subject.name).to match(/Limit$/)
     end
 
     it "should return plan_child_cost" do

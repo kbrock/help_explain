@@ -1,5 +1,6 @@
 class Query < ActiveRecord::Base
   before_validation :clean_sql
+  before_validation :fetch_plan
   before_validation :clean_plan
 
   validates_presence_of %w(name sql plan)
@@ -10,6 +11,21 @@ class Query < ActiveRecord::Base
 
   def query_plan
     @query_plan ||= Plan.new(plan)
+  end
+
+  def fetch_plan
+    if sql.present? && self.plan.blank?
+      clean_sql #just in case
+      self.plan = MainDb.plan(sql)
+    end
+  end
+
+  def clone
+    copy = self.dup
+    copy.id=nil
+    copy.plan=nil
+    copy.name+=" copy"
+    copy
   end
 
   private

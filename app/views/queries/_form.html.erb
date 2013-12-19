@@ -6,21 +6,21 @@
     </div>
   </div>
   <div class="control-group">
+    <%= f.label :comment, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_area :comment, :class => 'text_field span6', :rows => 2 %>
+    </div>
+  </div>
+  <div class="control-group">
     <%= f.label :sql, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_area :sql, :class => 'text_field span6', :rows => 10, :placeholder => "SQL" %>
+      <%= f.text_area :sql, :class => 'text_field span6', :rows => 15, :placeholder => "SQL" %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :plan, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_area :plan, :class => 'text_field span6', :rows => 10, :placeholder => "JSON query plan" %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :comment, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_area :comment, :class => 'text_field span6', :rows => 2 %>
+      <%= f.text_area :plan, :class => 'text_field span6', :rows => 5, :placeholder => "JSON query plan" %>
     </div>
   </div>
 
@@ -28,5 +28,14 @@
     <%= f.submit nil, :class => 'btn btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 queries_path, :class => 'btn' %>
+    <%- unless @query.new_record? %>
+      <%= link_to t('.clone', :default => t("helpers.links.clone")),
+                clone_query_path(id: @query.id), :class => 'btn' %>
+      <%= link_to icon_and_text('destroy','trash'),
+                  query_path(@query),
+                  :method => :delete,
+                  :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                  :class => 'btn btn-mini btn-danger' %>
+    <% end %>
   </div>
 <% end %>

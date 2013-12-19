@@ -1,5 +1,9 @@
 HelpExplain::Application.routes.draw do
-  resources :queries
+  resources :queries do
+    member do
+      get 'clone'
+    end
+  end
 
   root to: redirect('/queries')
   # The priority is based upon order of creation: first created -> highest priority.

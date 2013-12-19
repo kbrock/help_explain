@@ -1,9 +1,10 @@
 class SqlText
 
   def self.clean(str)
-    str.gsub(/^vmdb_development.=/,'')
+    str.gsub(/^  */,'')
+       .gsub(/^vmdb_development.# */,'')
        .gsub(/^$\n/,'')
-       .gsub(/\Aexplain.*(select|update|insert|delete)/i) {$1}
+       .gsub(/\A\w*explain.*(select|update|insert|delete)/i) {$1}
   end
 
   def self.simplify_filter(str)
