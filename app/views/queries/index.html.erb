@@ -17,18 +17,20 @@
         <td><%= link_to query.plan_summary, query_path(query) %></td>
         <td>
           <%= link_to icon_and_text('edit'),
-                      edit_query_path(query), :class => 'btn btn-mini' %>
-          <%= link_to icon_and_text('destroy','trash'),
+                      edit_query_path(query), :class => 'btn btn-mini', :title => 'Edit' %>
+          <%= link_to icon_and_text('clone','leaf'),
+                      clone_query_path(id: query.id), :class => 'btn btn-mini', :title => 'Clone' %>
+          <%= link_to icon_and_text('destroy','fire'),
                       query_path(query),
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-mini btn-danger' %>
+                      :class => 'btn btn-mini btn-danger', :title => 'Delete' %>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<%= link_to icon_and_text('new','plus'),
+<%= link_to icon_and_text('new','leaf'),
             new_query_path,
-            :class => 'btn btn-primary' %>
+            :class => 'btn btn-mini btn-primary' %>

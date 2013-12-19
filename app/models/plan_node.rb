@@ -178,6 +178,12 @@ class PlanNode
   # available for verbose plans
   hash_accessor "Output"
 
+  def total_type
+    "#{type} #{children.map(&:total_type).join(" ").gsub(/  */,' ')}"
+  end
+
+  private
+
   @next_id = 0
   def self.next_id
     @next_id = (@next_id + 1) % 1000

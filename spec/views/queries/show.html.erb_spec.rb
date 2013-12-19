@@ -15,8 +15,6 @@ describe "queries/show" do
     render
     # Run the generator again with the --webrat flag if you want to use webrat matchers
     expect(rendered).to match(/Name/)
-    expect(rendered).to match(/Comment/)
-    #expect(rendered).to match(/Sql/)
     #TODO: match plan text here
     #expect(rendered).to match(//)
   end

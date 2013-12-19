@@ -1,3 +1,10 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+
+$ ->
+  $(".queryplan-js").treetable
+    expandable: true
+    initialState: "expanded"
+
+  #hilight selected row
+  $(".queryplan-js tbody tr").on "mousedown", ->
+    $("tr.selected").removeClass("selected");
+    $(@).addClass("selected");

@@ -22,6 +22,8 @@
 <span title="planned: <%= plan_node.plan_rows.to_i%>, actual: <%=plan_node.actual_rows.to_i%>"><%= plan_node.actual_rows ||0%></span><%= optional_metric(plan_node, "filter", :filter_removed) %><%= optional_metric(plan_node, "recheck", :recheck_removed) %></td>
   <td><%= plan_node.plan_width %></td>
   <td><%= plan_node.actual_loops %></td>
+  <!--
   <td><%= (plan_node.attr.keys - PlanNode.known_attributes).map{|k| "#{k}=#{plan_node[k]}"}.join("<BR>").html_safe %></td>
+-->
 </tr>
 <%= render plan_node.children %>

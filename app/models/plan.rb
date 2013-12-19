@@ -19,7 +19,7 @@ class Plan
   end
 
   def plan_summary
-    "good stuff"
+    node.total_type
   end
 
   def node
