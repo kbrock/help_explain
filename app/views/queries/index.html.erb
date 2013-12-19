@@ -1,6 +1,9 @@
 <div class="page-header">
   <ol class="breadcrumb">
     <li class="active"><%=t '.title', :default => 'query' %></li>
+    <li><%= link_to icon_and_text('new','leaf'),
+            new_query_path,
+            :class => 'btn btn-mini btn-primary' %></li>
   </ol>
 </div>
 <%= form_for(Query.new, url: compare_queries_path) do |f| %>
@@ -20,11 +23,11 @@
         <td><%= link_to query.name, query_path(query) %></td>
         <td><%= link_to query.plan_summary, query_path(query) %></td>
         <td>
-          <%= link_to icon_and_text('edit'),
+          <%= link_to icon('edit'),
                       edit_query_path(query), :class => 'btn btn-mini', :title => 'Edit' %>
-          <%= link_to icon_and_text('clone','leaf'),
+          <%= link_to icon('leaf'),
                       clone_query_path(id: query.id), :class => 'btn btn-mini', :title => 'Clone' %>
-          <%= link_to icon_and_text('destroy','fire'),
+          <%= link_to icon('fire'),
                       query_path(query),
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
@@ -36,7 +39,4 @@
 </table>
 
 <%= f.submit 'compare', :class => 'btn btn-primary btn-mini' %>
-<%= link_to icon_and_text('new','leaf'),
-            new_query_path,
-            :class => 'btn btn-mini btn-primary' %>
 <% end %>
