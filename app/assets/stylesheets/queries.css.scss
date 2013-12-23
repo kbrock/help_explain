@@ -9,3 +9,17 @@
 .has-details {
   border-bottom: 1px #999 dotted;
 }
+
+.high-significance {
+  color: #fff;
+  background-color: #800;
+}
+
+.medium-significance {
+  color: #fff;
+  background-color: #e80;
+}
+
+.low-significance {
+  background-color: #fe8;
+}

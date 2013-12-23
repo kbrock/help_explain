@@ -19,7 +19,19 @@ class Plan
   end
 
   def plan_summary
-    node.total_type
+    (node.total_type(0.002).uniq).join(", ").gsub(/  *, */,', ')
+  end
+
+  def summary_node
+    @summary_node ||= PlanNode.new(
+      "Node Type" => "Summary",
+      "Actual Total Time" => self["Plan"]["Actual Total Time"],
+      "Actual Rows" => self["Plan"]["Actual Rows"],
+      "Actual Loops" => self["Plan"]["Actual Loops"],
+      "Plan Rows" => self["Plan"]["Plan Rows"],
+      "Plan Width" => self["Plan"]["Plan Width"],
+      "Total Cost" => self["Plan"]["Total Cost"],
+    )
   end
 
   def node

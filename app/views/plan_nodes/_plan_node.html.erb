@@ -14,12 +14,10 @@
     <span class="has-details" title="<%= plan_node.recheck_cond %>">recheck: -<%= plan_node.recheck_removed.to_i%></span>
     <% end %>
   </td>
-  <td><span title="cumulative: <%=plan_node.actual_total_time%>"><%= number_with_precision(plan_node.actual_time)%></span></td>
-  <td><span title="cumulative: <%=number_with_precision(plan_node.plan_total_cost)%>"><%= number_with_precision(plan_node.plan_cost) %></span></td>
-  <!-- move 3x below -->
-  <td><span title="<%=plan_node.plan_rows.to_i%> planned, <%= plan_node.actual_rows.to_i%> scanned"><%= plan_node.diff_rows || "x" %></span></td>
+  <td><span class="actual-time <%=plan_node.actual_significance_text%>" title="<%= number_to_percentage(plan_node.actual_significance*100, precision:0) %> of total. cumulative: <%=plan_node.actual_total_time%>"><%= number_with_precision(plan_node.actual_time)%></span></td>
+  <td><span class="plan-cost <%=plan_node.cost_significance_text%>" title="<%= number_to_percentage(plan_node.cost_significance*100, precision:0) %> of total. cumulative: <%=number_with_precision(plan_node.plan_total_cost)%>"><%= number_with_precision(plan_node.plan_cost) %></span></td>
   <td>
-    <span class="has-details" title="planned: <%= plan_node.plan_rows.to_i%>, actual: <%=plan_node.actual_rows.to_i%>"><%= plan_node.actual_rows ||0%></span>
+    <span class="actual-rows <%=plan_node.rows_significance_text%>" title="<%=plan_node.diff_text%>, planned: <%= plan_node.plan_rows.to_i%>, actual: <%=plan_node.actual_rows.to_i%>"><%= plan_node.actual_rows || "x"%></span>
   <td><%= plan_node.plan_width %></td>
   <td><%= plan_node.actual_loops %></td>
   <!--

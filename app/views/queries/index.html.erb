@@ -10,7 +10,7 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th></th>
+      <th><%= f.submit 'diff', :class => 'btn btn-primary btn-mini' %></th>
       <th><%= Query.human_attribute_name(:name) %></th>
       <th><%= Query.human_attribute_name(:plan_summary) %></th>
       <th></th>
@@ -37,6 +37,4 @@
     <% end %>
   </tbody>
 </table>
-
-<%= f.submit 'compare', :class => 'btn btn-primary btn-mini' %>
 <% end %>
