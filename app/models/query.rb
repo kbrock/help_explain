@@ -7,7 +7,7 @@ class Query < ActiveRecord::Base
 
   validate :parsable_json
 
-  delegate :plan_summary, :total_time, to: :query_plan
+  delegate :summary, :total_time, to: :query_plan
 
   def query_plan
     @query_plan ||= Plan.new(plan)

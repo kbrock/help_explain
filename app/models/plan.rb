@@ -18,7 +18,7 @@ class Plan
     @attr.present?
   end
 
-  def plan_summary
+  def summary
     (node.total_type(0.002).uniq).join(", ").gsub(/  *, */,', ')
   end
 

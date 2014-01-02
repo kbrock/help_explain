@@ -1,6 +1,6 @@
-<tr data-tt-id="<%= plan_node.id %>" data-tt-parent-id="<%= plan_node.parent_id %>" data-tt-branch="<%= plan_node.children? %>">
-  <td>
-    <span class="<%=plan_node.kind%> <%=plan_node.flag%>"><%= plan_node.name%></span>
+<tr data-tt-id="<%= plan_node.id %>" data-tt-parent-id="<%= plan_node.parent_id %>" data-tt-branch="<%= plan_node.children? %>" class="">
+  <td class="kind">
+    <span class="<%=plan_node.kind%> <%=plan_node.flag%>"><img src="/assets/<%= plan_node.plan_img%>" class="type-image"><%= plan_node.name%></span>
     <%- if plan_node.index_cond? -%>
       <span class="has-details" title="<%= plan_node.index_cond %>">index</span>
     <%- end -%>
@@ -14,10 +14,14 @@
     <span class="has-details" title="<%= plan_node.recheck_cond %>">recheck: -<%= plan_node.recheck_removed.to_i%></span>
     <% end %>
   </td>
-  <td><span class="actual-time <%=plan_node.actual_significance_text%>" title="<%= number_to_percentage(plan_node.actual_significance*100, precision:0) %> of total. cumulative: <%=plan_node.actual_total_time%>"><%= number_with_precision(plan_node.actual_time)%></span></td>
-  <td><span class="plan-cost <%=plan_node.cost_significance_text%>" title="<%= number_to_percentage(plan_node.cost_significance*100, precision:0) %> of total. cumulative: <%=number_with_precision(plan_node.plan_total_cost)%>"><%= number_with_precision(plan_node.plan_cost) %></span></td>
-  <td>
-    <span class="actual-rows <%=plan_node.rows_significance_text%>" title="<%=plan_node.diff_text%>, planned: <%= plan_node.plan_rows.to_i%>, actual: <%=plan_node.actual_rows.to_i%>"><%= plan_node.actual_rows || "x"%></span>
+  <td class="actual-time <%=plan_node.actual_significance_text%>">
+    <span title="<%= number_to_percentage(plan_node.actual_significance*100, precision:0) %> of total. cumulative: <%=number_with_precision(plan_node.actual_total_time)%>"><%= number_with_precision(plan_node.actual_time)%></span>
+  </td>
+  <td class="plan-cost <%=plan_node.cost_significance_text%>">
+    <span title="<%= number_to_percentage(plan_node.cost_significance*100, precision:0) %> of total. cumulative: <%=number_with_precision(plan_node.plan_total_cost)%>"><%= number_with_precision(plan_node.plan_cost) %></span>
+  </td>
+  <td class="actual-rows <%=plan_node.rows_significance_text%>">
+    <span title="<%=plan_node.diff_text%>, planned: <%= plan_node.plan_rows.to_i%>, actual: <%=plan_node.actual_rows.to_i%>"><%= plan_node.actual_rows || "x"%></span>
   <td><%= plan_node.plan_width %></td>
   <td><%= plan_node.actual_loops %></td>
   <!--

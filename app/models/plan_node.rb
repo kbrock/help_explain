@@ -49,6 +49,7 @@ class PlanNode
   end
 
   hash_accessor "Node Type", "type"
+  hash_accessor "Join Type"
 
   #UI - belongs in decorator
   def name
@@ -60,6 +61,10 @@ class PlanNode
     else
       "#{type}"
     end
+  end
+
+  def plan_img
+    ["ex_", type, join_type.to_s.gsub(/^Inner$/,''), '.png'].join('').gsub(' ','_').downcase
   end
 
   ignore_attribute "Plans"

@@ -12,7 +12,7 @@
     <tr>
       <th><%= f.submit 'diff', :class => 'btn btn-primary btn-mini' %></th>
       <th><%= Query.human_attribute_name(:name) %></th>
-      <th><%= Query.human_attribute_name(:plan_summary) %></th>
+      <th><%= Query.human_attribute_name(:summary) %></th>
       <th></th>
     </tr>
   </thead>
@@ -21,7 +21,7 @@
       <tr>
         <td><%= check_box_tag 'id[]', query.id, false, id: "compare-id-#{query.id}"%></td>
         <td><%= link_to query.name, query_path(query) %></td>
-        <td><%= link_to query.plan_summary, query_path(query) %></td>
+        <td><%= link_to query.summary, query_path(query) %></td>
         <td>
           <%= link_to icon('edit'),
                       edit_query_path(query), :class => 'btn btn-mini', :title => 'Edit' %>
