@@ -251,7 +251,7 @@ class PlanNode
 
   #ui
   def rows_significance_text
-    if diff_rows.nil?
+    if diff_rows.nil? || diff_rows.infinite?
       nil
     elsif diff_rows.to_i >= 1_000
       "high-significance"
