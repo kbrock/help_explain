@@ -6,6 +6,7 @@ class MainDb < ActiveRecord::Base
   # currently fetching plan while creating/updating Query and aborts transaction
   def self.plan(sql)
     #transaction do
+      # EXPLAIN (ANALYZE true, COSTS true, FORMAT json)
       connection.execute("explain (analyze on, format json) #{sql}").first["QUERY PLAN"]
     #  raise ActiveRecord::Rollback
     #end

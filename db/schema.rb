@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,16 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131217230011) do
+ActiveRecord::Schema.define(version: 2013_12_17_230011) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "queries", force: true do |t|
-    t.string   "name",       null: false
-    t.text     "comment"
-    t.text     "sql",        null: false
-    t.text     "plan",       null: false
+  create_table "queries", id: :serial, force: :cascade do |t|
+    t.string "name", null: false
+    t.text "comment"
+    t.text "sql", null: false
+    t.text "plan", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
