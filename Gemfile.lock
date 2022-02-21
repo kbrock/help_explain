@@ -88,7 +88,7 @@ GEM
     nokogiri (1.12.5-x86_64-darwin)
       racc (~> 1.4)
     pg (1.2.3)
-    puma (4.3.9)
+    puma (4.3.11)
       nio4r (~> 2.0)
     racc (1.5.2)
     rack (2.2.3)
@@ -177,7 +177,7 @@ DEPENDENCIES
   anbt-sql-formatter
   jquery-rails
   pg
-  puma (~> 4.3.9)
+  puma (~> 4.3.11)
   rails (= 5.2.2)
   rspec-rails
   sass-rails
