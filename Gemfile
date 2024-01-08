@@ -41,4 +41,4 @@ group :development, :test do
 #  gem 'better_error_message'
 end
 
-gem "puma",                           "~>5.6.7"
+gem "puma",                           "~>5.6.8"
