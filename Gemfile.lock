@@ -110,7 +110,7 @@ GEM
       timeout
     net-smtp (0.4.0.1)
       net-protocol
-    nio4r (2.7.3)
+    nio4r (2.7.5)
     nokogiri (1.19.3)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
@@ -118,7 +118,7 @@ GEM
       racc (~> 1.4)
     pg (1.4.4)
     prism (1.9.0)
-    puma (5.6.9)
+    puma (7.2.1)
       nio4r (~> 2.0)
     racc (1.8.1)
     rack (2.2.23)
@@ -213,7 +213,7 @@ DEPENDENCIES
   anbt-sql-formatter
   jquery-rails
   pg
-  puma (~> 5.6.9)
+  puma (~> 7.2.1)
   rails (= 6.1.7.7)
   rspec-rails
   sass-rails
